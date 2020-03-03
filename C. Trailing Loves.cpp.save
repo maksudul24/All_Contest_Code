@@ -1,0 +1,77 @@
+#include <bits/stdc++.h>
+#define P(X) cout<<"db "<<X<<endl;
+#define P2(X,Y) cout<<"d2 "<<X<<" "<<Y<<endl;
+#define ll long long
+#define rep(i,n) for(i=1;i<=n;i++)
+#define FO freopen("out.txt","w",stdout);
+#define MS(XX,YY) memset(XX,YY,sizeof(XX));
+#define pii pair<int,int>
+using namespace std;
+
+long long int prime[1000000],nprime=0;
+char mark[1000100];
+void sieve(long long int n);
+
+int main()
+{
+    long long int n,cnt,n_cnt,max_v=9223372036854775806,b,temp,num,i,lmt,overfl;
+    bool over=false;
+     freopen("in.txt","r",stdin);
+    scanf("%I64d %I64d",&n,&b);
+    lmt=sqrt(b);
+    sieve(lmt);
+    prime[nprime++]=b;
+    for(i=0;prime[i]<=lmt;i++){
+        if(b%prime[i]==0){
+            cnt=0;
+            while(b%prime[i]==0){
+                cnt++;
+                b=b/prime[i];
+            }
+            num=prime[i];
+            n_cnt=0;
+            while(n/num){
+                n_cnt+=n/num;
+                cout<<n<<" / " <<num<<" : "<<n/num<<endl;
+                overfl=num;
+                num=num*prime[i];
+                if(num/prime[i]!=overfl || num<0) break;
+
+
+            }
+            cnt=n_cnt/cnt;
+            if(cnt<max_v) max_v=cnt;
+            if(b==1) break;
+        }
+    }
+    if(b!=1){
+            num=b;
+            cnt=0;
+            while(n/num){
+                cnt+=n/num;
+                overfl=num;
+                cout<<"pr "<<n<<" / " <<num<<" : "<<n/num<<endl;
+                num=num*b;
+                if(num/=overfl || num<0) break;
+            }
+            if(cnt<max_v) max_v=cnt;
+    }
+    printf("%I64d\n",max_v);
+    return 0;
+}
+void sieve(long long int n)
+{
+    int i,j,limit=sqrt(n*1.0)+2;
+    prime[nprime++]=2;
+    for(i=3;i<=n;i+=2){
+        if(mark[i]!='1'){
+            prime[nprime++]=i;
+            if(i<=limit){
+                for(j=i*i;j<=n;j+=i*2){
+                    mark[j]='1';
+                }
+            }
+        }
+    }
+    return;
+}

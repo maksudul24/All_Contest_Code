@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+#define P(X) cout<<"db "<<X<<endl;
+#define P2(X,Y) cout<<"d2 "<<X<<" "<<Y<<endl;
+#define ll long long
+#define rep(i,n) for(i=1;i<=n;i++)
+#define FO freopen("t.txt","w",stdout);
+#define MS(XX,YY) memset(XX,YY,sizeof(XX));
+#define pii pair<int,int>
+#define SIZE 1001
+#define uu first
+#define vv second
+
+using namespace std;
+
+int fx[]={1,-1,0,0};
+int fy[]={0,0,1,-1};
+int cell[SIZE][SIZE];
+int d[SIZE][SIZE],vis[SIZE][SIZE];
+int row,col;
+
+void clear( std::queue<pii> &q )
+{
+   std::queue<pii> empty;
+   std::swap( q, empty );
+}
+
+int bfs(int sx,int sy,int d_x,int d_y)
+{
+	memset(vis,0,sizeof vis);
+	vis[sx][sy]=1;
+	queue<pii>q;
+	q.push(pii(sx,sy));
+	while(!q.empty())
+	{
+		pii top=q.front(); q.pop();
+		for(int k=0;k<4;k++)
+		{
+			int tx=top.uu+fx[k];
+			int ty=top.vv+fy[k];
+			if(tx>=0 and tx<row and ty>=0 and ty<col and cell[tx][ty]!=-1 and vis[tx][ty]==0)
+			{
+				vis[tx][ty]=1;
+				d[tx][ty]=d[top.uu][top.vv]+1;
+				if(tx==d_x && ty==d_y){
+                    clear(q);
+                    return d[tx][ty];
+				}
+				q.push(pii(tx,ty));
+			}
+		}
+
+	}
+	return 0;
+}
+
+int main()
+{
+    int i,j,n,cas=0,x,y,len,start_x,start_y,des_x,des_y;
+  //  freopen("in.txt","r",stdin);
+    while(1){
+        memset(cell,0,sizeof(cell));
+        memset(d,0,sizeof(d));
+        memset(vis,0,sizeof (vis));
+        scanf("%d %d",&row,&col);
+        if(row==0 && col==0) break;
+        scanf("%d",&n);
+        for(i=0;i<n;i++){
+            scanf("%d %d",&x,&len);
+            for(j=0;j<len;j++){
+                scanf("%d",&y);
+                cell[x][y]=-1;
+                printf("%d %d\n")
+            }
+        }
+        scanf("%d %d %d %d",start_x,start_y,des_x,des_y);
+
+        printf("Case %d: %d\n",++cas,bfs(start_x,start_y,des_x,des_y));
+    }
+    return 0;
+}
+

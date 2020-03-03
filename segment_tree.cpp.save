@@ -1,0 +1,9 @@
+//call with build(1,1,n)
+void build(int a,int L,int R)
+{
+    sum[a]=0;
+    if(L==R) return;
+    int mid=(L+R)/2;
+    build(2*a,L,R);
+    
+}

@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+int modInverse(int a, int m)
+{
+    a = a%m;
+    for (int x=1; x<m; x++){
+       if ((a*x) % m == 1)
+          return x;
+    }
+    return 0;
+}
+
+// Driver Program
+int main()
+{
+    int a = 4, m = 6;
+    cout << modInverse(a, m);
+    return 0;
+}

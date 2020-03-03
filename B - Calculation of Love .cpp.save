@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+#define P(X) cout<<"db "<<X<<endl;
+#define P2(X,Y) cout<<"d2 "<<X<<" "<<Y<<endl;
+#define ll long long
+#define rep(i,n) for(i=1;i<=n;i++)
+#define FO freopen("t.txt","w",stdout);
+#define MS(XX,YY) memset(XX,YY,sizeof(XX));
+#define pii pair<int,int>
+using namespace std;
+
+int main()
+{
+    int i,j,n,x,y,cnt,num1,num2,m,len;
+    char boy[30],girl[30];
+    double ans;
+   // freopen("in.txt","r",stdin);
+
+    while(scanf(" [^/n]",boy)!=EOF){
+            x=0,y=0,num1=0,num2=0;
+            m=strlen(boy);
+            n=strlen(girl);
+            if(m>n) len=m;
+            else len=n;
+            for(i=0;i<len;i++){
+                if(i<m){
+                    if(boy[i]>='a' && boy[i]<='z')  x+=(boy[i]-96);
+                    else if(boy[i]>='A' && boy[i]<='Z') x+=(boy[i]-64);
+                }
+                if(i<n){
+                    if(girl[i]>='a' && girl[i]<='z')  y+=(girl[i]-96);
+                    else if(girl[i]>='A' && girl[i]<='Z') y+=(girl[i]-64);
+                }
+            }
+            while(x || y){
+                   if(x) num1+=x%10;
+                   if(y) num2+=y%10;
+                    x=x/10;
+                    y=y/10;
+                    if(!x && num1>9){
+                        x=num1;
+                        num1=0;
+                    }
+                    if(!y && num2>9){
+                        y=num2;
+                        num2=0;
+                    }
+            }
+            if(num1>num2) ans=((1.0*num2)/(1.0*num1));
+            else ans=((1.0*num1)/(1.0*num2));
+            ans=ans*100.00;
+            printf("%0.2lf %%\n",ans);
+    }
+    return 0;
+}

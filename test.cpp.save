@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+#define P(X) cout<<"db "<<X<<endl;
+#define P2(X,Y) cout<<"d2 "<<X<<" "<<Y<<endl;
+#define ll long long
+#define rep(i,n) for(i=1;i<=n;i++)
+#define FO freopen("out.txt","w",stdout)
+#define FI freopen("in.txt","r",stdin)
+#define MS(XX,YY) memset(XX,YY,sizeof(XX));
+#define pii pair<int,int>
+using namespace std;
+
+struct test{
+    int x,y;
+
+};
+
+int main()
+{
+    int i,j,n,cas=0,ts;
+    test temp,temp2;
+    temp.x=10,temp2.x=10,temp.x=2,temp2.y=
+    scanf("%d",&ts);
+    while(ts--){
+
+        printf("Case %d: %d\n",++cas,);
+    }
+    return 0;
+}

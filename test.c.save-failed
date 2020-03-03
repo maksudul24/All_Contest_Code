@@ -1,0 +1,7 @@
+#include<stdio.h>
+int main()
+{
+    long long int x=1000000000;
+    printf("%lld\n",x*9);
+    return 0;
+}
